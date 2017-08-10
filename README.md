@@ -42,4 +42,4 @@ vagrant@vagrant:/vagrant/loggenerator$
 
 ## License
 
-The content of this repository is licensed under a [Creative Commons Attribution License]
+The content of this repository is licensed under a [MIT License](https://opensource.org/licenses/MIT)
