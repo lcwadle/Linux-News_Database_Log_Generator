@@ -18,10 +18,20 @@ The code is written in python with a single file: **LogGenerator.py**
 Change the output to a text file instead of a console output.
 
 ## Usage
-* Start vagrant vm using vagrant up
-* SSH into vagrant vm using vagrant ssh
-* Navigate to the LogGenerator folder
-* Run python generator.py to output the log
+#### Required software
+* Download and install [VirtualBox](https://www.virtualbox.org/). This is free software that will run the virtual machine
+* Download and install [Vagrant](https://www.vagrantup.com/). This is an command line utility that makes it easy to manage and access your virtual machines
+
+#### Setting Up Environment
+* Create a new folder on your computer named **vagrant** where you’ll store your work for this course, then open that folder within your terminal
+* Type `vagrant init` to tell Vagrant what kind of Linux virtual machine you would like to run
+* Type `vagrant up` to download and start running the virtual machine
+* Unzip **newsdata.sql** from the database folder and save it into the **vagrant** folder you created in step 1
+
+#### Running **LogGenerator.py**
+* Within your terminal, type `vagrant ssh` from your folder created in the previous step
+* Navigate to the News-Database-Log-Generator folder within your vagrant vm, ex. `cd /vagrant/News-Database-Log-Generator`
+* Type `python loggenerator.py` to run the log generator
 
 ## Output
 ~~~~
