@@ -6,16 +6,16 @@ This is the code to generate a log from the postgress database "news" including 
 
 The code is written in python with a single file: **LogGenerator.py**
 
-**Generator.py** makes 4 queries to the database.
-* Selects article title and number of views per article limited to the top 3 by views.
-* Selects author name and numbe rof views per author.
-* Selects date and number of 404 errors by date.
-* Seletcs date and total views by date.
-
-**Generator.py** uses the last two queries to calculate the error percentage by day in python and outputs any day over 1%.
+**LogGenerator.py** had 6 functions and makes 3 queries to the database.
+* **dbconnect** creates a database connection and curssor to the news database.  It returns the connection and cursor as a tuple, (conn, cur).
+* **dbdisconnect** takes a connection tuple, (conn, cur), and safely closes both the connection and cursor.
+* **exec_query** takes in a query string and uses **dbconnect** to execute the query string on the database.  When the query is complete, the results are stored in a local variable and the connection is closed using **dbdisconnect**.  Finally, the results are returned.
+* **print_top_articles** queries the database for the top 5 articles by number of views and outputs to console the article names and number of views sorted highest to lowest by number of views.
+* **print_top_authors** queries the database for all the authors and outputs the author name and number of views all of the author's articles have received sorted highest to lowest by number of views received.
+* **print_error_logs** queries the database for the number of views per day and number of 404 Not Found errors returned.  It then outputs any day with more than a 1% error rate and the corresponding error rate for that day.
 
 ## Todo
-Change the output to a text file vs a console output.
+Change the output to a text file instead of a console output.
 
 ## Usage
 * Start vagrant vm using vagrant up
