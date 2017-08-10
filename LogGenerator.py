@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import psycopg2
 
+
 # Creates a connection and a cursor to the 'news' database
 # Returns connection and cursor in a tuple, (conn, cur)
 def dbconnect():
@@ -8,10 +9,12 @@ def dbconnect():
     cur = conn.cursor()
     return (conn, cur)
 
+
 # Closes the connection and cursor to the database
 def dbdisconnect(conn_info):
     conn_info[0].close()
     conn_info[1].close()
+
 
 # Executes specified query on the database while safely connection and
 # disconnecting from the database
@@ -23,15 +26,17 @@ def exec_query(query):
     dbdisconnect(db_info)
     return records
 
+
 # Prints the top 3 articles in the database
 def print_top_articles():
     print ("1. What are the most popular three articles of all time?")
-    records =  exec_query("""select articles.title, count(log.id) from articles,
+    records = exec_query("""select articles.title, count(log.id) from articles,
                           log where log.path = '/article/' || articles.slug
                           group by articles.title order by count(log.id) desc
                           limit 3;""")
     for record in records:
         print (record[0] + " - " + str(record[1]) + " views")
+
 
 # Prints the top rated authors by views from highest to lowest
 def print_top_authors():
@@ -44,6 +49,7 @@ def print_top_authors():
 
     for record in records:
         print (record[0] + " - " + str(record[1]) + " views")
+
 
 # Prints days where the error rate for connecting to articles was higher than
 # 1%
